@@ -9,10 +9,6 @@ void setup() {
 
 void draw() {
     background(52);
-    translate(width/2,height/2,0);
-    rotateZ(r);
-    rotateX(r);
-    box(100);
-
-    r += radians(1);
+    
+    
 }

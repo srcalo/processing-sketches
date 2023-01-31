@@ -1,7 +1,11 @@
 import peasy.*;
+import gifAnimation.*;
 
 PeasyCam cam;
 double camD = 500;
+GifMaker gif;
+int ft = 600;
+boolean gs = false;
 
 int n = 100;       // How many cubes
 int dim = 1000;     // How large the plane is
@@ -18,6 +22,9 @@ void setup() {
     colorMode(HSB, 360, 100, 100);
     noiseDetail(3);
     // cam = new PeasyCam(this, camD);
+    
+    gif = new GifMaker(this, "star.gif");
+    gif.setRepeat(0);
 }
 
 float h = 10;
@@ -52,6 +59,8 @@ void draw() {
         }
     }
     t += dt;
+    
+    handleGif();
 }
 
 void whiteLight() {
@@ -64,4 +73,18 @@ void colorLight() {
     directionalLight(0, 96, 153, 1, 0, 0);    // X Face
     directionalLight(0, 160, 255, 0, 0, -1);    // Z Face
     directionalLight(84, 191, 255, 0, 1, 0);   // Y Light
+}
+
+void handleGif() {
+  gif.setDelay(1000/30);
+  gif.addFrame();
+  if(frameCount > ft && !gs) {
+   gs = gif.finish();
+   if(gs) {
+     print("Gif successfully exported");
+    }
+    else {
+      print("Gif failed to export");
+    }
+  }
 }

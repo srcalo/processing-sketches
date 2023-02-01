@@ -1,3 +1,5 @@
+boolean saveGif = false;
+
 int n = 100;       // How many cubes
 int dim = 1000;     // How large the plane is
 float w = dim*2/n;
@@ -46,7 +48,7 @@ void draw() {
         }
     }
     t += dt;
-  if(frameCount < 600) {
+  if(saveGif && frameCount < 600) {
     saveFrame("###.jpg");
   }   
 }
